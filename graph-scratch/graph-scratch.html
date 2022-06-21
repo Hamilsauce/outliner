@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <title>graph</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.3.0/rxjs.umd.min.js" integrity="sha512-y3JTS47nnpKORJX8Jn1Rlm+QgRIIZHtu3hWxal0e81avPrqUH48yk+aCi+gprT0RMAcpYa0WCkapxe+bpBHD6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="./graph-scratch.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div id="appHeader">
+      <div id="action-buttons">
+
+        <input class="graph-button" id="add-node-button" type="button" value="New Node">
+        <input class="graph-button" id="add-edge-button" type="button" value="Connect Nodes">
+        <input class="graph-button" id="undo-button" type="button" value="Undo">
+      </div>
+    </div>
+    <div id="appBody">
+      <svg x="0" y="0" id="graph" width="412" height="672" viewBox="-200 -350 412 700" preserveAspectRatio="xMinYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+        <defs>
+          <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path id="smallGridPath" d="M 10 0 H 0 V 10" fill="none" stroke="#5B5B5B50" stroke-width="0.5" />
+          </pattern>
+          <pattern id="largeGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+            <rect id="largeGridRect" width="50" height="50" fill="url(#smallGrid)" />
+            <path id="largeGridPath" d="M 50 0 H 0 V 50" fill="none" stroke="#5B5B5B50" stroke-width="1" />
+          </pattern>
+          <marker id="trianglestart" viewBox="0 0 1 1" refX="0" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M 10 0 L 0 5 L 10 10 z" />
+          </marker>
+          <marker id="triangleend" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" />
+          </marker>
+        </defs>
+        <g id="surface" x="0" y="0" data-layer="true" data-layer-index="0" transform="translate(0)">
+          <rect id="surface-background" transform="translate(-200,-350)" class="face" fill="url(#largeGrid)" width="412" height="700"></rect>
+          <circle transform="translate(0,0)" r="10px" fill="#FFFFFF30"></circle>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <script src="./graph-scratch.js" type="module"></script>
+</body>
+
+</html>

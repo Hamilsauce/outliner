@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css'>
+<!-- 	<link rel='stylesheet' href='./css/main.css'>
+	<link rel='stylesheet' href='./css/nav.css'>
+	<link rel='stylesheet' href='./css/card.css'>
+	<link rel='stylesheet' href='./css/userform.css'>
+	<link rel='stylesheet' href='./css/delete-card-modal.css'>
+	<link rel='stylesheet' href='./css/week-group.css'> -->
+	<title>Outline balls</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+	
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+	<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+	<script src="https://unpkg.com/dayjs@1.8.21/plugin/weekOfYear.js"></script>
+	<script src="https://unpkg.com/dayjs@1.8.21/plugin/weekday.js"></script>
+	<script>
+		dayjs.extend(window.dayjs_plugin_weekOfYear)
+		dayjs.extend(window.dayjs_plugin_weekday)
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js"></script>
+	<script src="./vue/vuex2.0.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.2.1/vue-router.js'></script>
+<link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</head>
+
+<body>
+	<main id="app">
+		<header id=app-"header">
+		<h2 id="app-title">
+		OutlineDown
+		  
+		</h2>
+		  </header>
+	  
+		<section id="app-body"></section>
+		<footer id="app-footer"></footer>
+	</main>
+	
+	<!-- - -->
+	<!-- !!DeleteModal -->
+	<template id="delete-card-modal">
+		<div class="delete-card-modal">
+			<div class="delete-card-modal-menu">
+				<div class="delete-modal-text">Delete Card?</div>
+				<div class="delete-modal-button-container">
+					<div @click="deleteConfirmed" class="delete-confirm-button delete-modal-button">Ok</div>
+					<div @click="deleteCanceled" class="delete-cancel-button delete-modal-button">Cancel</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<!-- - -->
+	<!-- !!AppNav -->
+	<template id="app-nav">
+		<div class="app-nav">
+			<div class="nav-head">
+				<div @click="closeNav" class="close-nav">
+					X
+				</div>
+			</div>
+			<router-link class="home-link" v-bind:to="'/'">
+				<div class="nav-link" @click="closeNav">
+					Home
+				</div>
+			</router-link>
+			<router-link class="new-card-link" v-bind:to="'/add-shift-view'">
+				<div class="nav-link" @click="closeNav">
+					Add Shift
+				</div>
+			</router-link>
+			<div class="nav-link export-json-link" @click="exportJsonClicked" @click="closeNav">
+				Export JSON
+			</div>
+			<div class="nav-link export-csv-link" @click="exportCsvClicked" @click="closeNav">
+				Export CSV
+			</div>
+			<a class="tabbed-ui-link nav-link" href="./tabbed-ui/index.html">Tabbed UI</a>
+			<a class="sporttrade-link nav-link" href="./sporttrade/index.html">SportTrade Clone</a>
+			<a class="svg-draw-link nav-link" href="./svg-diagram/svg-draw.html">SVG Draw</a>
+			<a class="music-link nav-link" href="https://hamilsauce.github.io/music-library-app/">ham radio</a>
+			<a class="github-link nav-link" href="#">github</a>
+		</div>
+	</template>
+	<!-- - -->
+	<!-- !!Dimmer -->
+	<template id="modal-dimmer">
+		<div class="modal-dimmer" :class="{hide: !showDimmer}" @click="handleDimmerClick"></div>
+	</template>
+	<!-- - -->
+	<!-- !!AppHeader -->
+	<template id="app-header">
+		<div class="app-header">
+			<img @click="handleMenuClick" class="menu-toggle-button" src="./assets/ellipsis.svg" alt="menu-toggle-button" />
+			<div class="header-title">
+				Work Tracker
+			</div>
+		</div>
+	</template>
+	<!-- - -->
+	<!-- !!CardView -->
+	<template id="card-view">
+		<div ref="cardView" class="card-view">
+			<div class="card-search-container">
+				<label for="card-search-input">Search Date</label>
+				<input v-model="searchInput" type="date" name="card-search-input" id="card-search-input" class="card-search-input" value="" />
+			</div>
+			<div ref="cardList" class="card-list">
+				<div v-if="workHistory.length === 0" class="empty-screen-notice">
+					No work history found. Add a shift by going to the menu.
+				</div>
+				<week-group v-for="week in weekGroups" :week="week[2]" :weekNumber="week[0]" :key="week[0]">poop</week-group>
+			</div>
+		</div>
+	</template>
+	<!-- !!WeekGroup -->
+	<template id="week-group">
+		<div ref="weekGroup" class="week-group">
+			<div class="week-group-label" @click="collapseWeek">
+				<div class="week-label-text"> Week {{weekNumber || week[0].weekNumber}}</div>
+				<img class="expand-icon" v-if="!collapse" src="./assets/expand-less.svg" alt="expand-week-toggle" />
+				<img class="expand-icon" v-else src="./assets/expand-more.svg" alt="expand-week-toggle" />
+			</div>
+			<div ref="weekTotals" @click="toggleChart" class="week-totals">
+				<div class="week-totals-days">Days: {{totals.days}}</div>
+				<div class="week-totals-hours">Hours: {{totals.hours}}</div>
+				<div class="week-totals-earnings">Earnings: ${{totals.earnings}}</div>
+			</div>
+			<chart-overlay :week="week" v-if="showChart" :collapse="collapse" :class="{hide: !showChart}" :weekNumber="weekNumber"></chart-overlay>
+			<div ref="weekList" class="week-list" :class="{ collapse: collapse }">
+				<card @delete-selected="handleDeleteCard" @toggle-edit="setEditCardId" v-for="shift in week" :selected-card-id="selectedCardId" :edit-card-id="editCardId" :shift="shift"></card>
+			</div>
+		</div>
+	</template>
+	<!-- !!Chart -->
+	<template id="chart-overlay">
+		<div class="chart-container" :class="{ collapse: collapse }">
+			<canvas class="chart" width="350" height="200" ref="chart" id="chart"></canvas>
+		</div>
+	</template>
+	<!-- !!Card -->
+	<template id="card">
+		<div :ref="refName" class="card" @click.stop="emitCardSelected" v-bind:class="{ activeCard: isSelected }" :data-edit-mode="editMode">
+			<div class="card-header-container">
+				<div class="card-header" v-if="isSelected">
+					<div v-if="!editMode" @click.stop="toggleEdit" class="header-button header-edit-button">
+						Edit
+					</div>
+					<div v-else class="card-edit-buttons">
+						<div @click.stop="saveEdit" class="header-button header-save-button">
+							Save
+						</div>
+						<div @click.stop="toggleEdit" class="header-button header-cancel-button">
+							Cancel
+						</div>
+						<div @click.stop="deleteCard" class="header-button header-edit-button">
+							Delete
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-hours-container" v-bind:class="{ editing: editMode }">
+				<div @input="updateHours" v-bind:class="{ editing: editMode }" :contenteditable="editMode" class="card-hours-value">{{ shift.hours }}</div>
+				<div class="card-hours-postfix" v-if="!editMode" >Hours</div>
+			</div>
+			<div @input="updateDetails"  v-bind:class="{ editing: editMode }" :contenteditable="editMode" class="card-details">{{ shift.details }}</div>
+			<div class="card-date">
+				<div class="day-date">
+					{{shift.date | dayDate}}
+				</div>
+				<div class="month">
+					{{shift.date | month}}
+				</div>
+			</div>
+		</div>
+	</template>
+	<!-- - -->
+	<!-- !!AddShiftView -->
+	<template id="add-shift-view">
+		<div class="form-modal-container">
+			<h3 class="form-modal-header">
+				Add Shift
+			</h3>
+			<form class="userform">
+				<label for="date-input">Date</label>
+				<input v-model="newShift.date" type="date" class="date-input" name="date-input" id="date-input" value="" />
+				<label for="hours-input">Hours</label>
+				<input v-model.number="newShift.hours" type="number" class="hours-input number-input" name="hours-input" id="hours-input" max="24" placeholder="0" value="" />
+				<label for="detail-input">Details</label>
+				<textarea v-model="newShift.details" rows="5" class="details-input text-input" name="details-input" id="details-input"></textarea>
+				<div class="userform-button-container">
+					<input @click="handleFormSubmit" class="userform-submit-button" type="submit" value="Submit" />
+					<input @click="handleFormCancel" class="userform-cancel-button" type="button" value="Cancel" />
+				</div>
+			</form>
+		</div>
+	</template>
+	<!-- - -->
+	<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/FileSaver.js"></script>
+	<script src='./style.js' type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- Created with PainterSVG V3.92 -->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:psvg="http://www.paintersvg.com/namespace.html" id="svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <radialGradient id="radialgradient" cx="10" cy="10" r="10" gradientUnits="userSpaceOnUse" spreadMethod="pad">
+      <stop offset="0" style="stop-color:#264f79;stop-opacity:1" />
+      <stop offset="1" style="stop-color:#102d4b;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  <circle class="list-bullet" cx="10" cy="10" r="10" fill="url(#radialgradient)"></circle>
+  
+</svg>

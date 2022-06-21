@@ -1,0 +1,1 @@
+export default await (await fetch('../data/empty-data.json')).json();

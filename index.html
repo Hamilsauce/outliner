@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <title>Outline</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.3.0/rxjs.umd.min.js" integrity="sha512-y3JTS47nnpKORJX8Jn1Rlm+QgRIIZHtu3hWxal0e81avPrqUH48yk+aCi+gprT0RMAcpYa0WCkapxe+bpBHD6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./css/outline.css" />
+  <link rel="stylesheet" href="./css/store-panel.css" />
+</head>
+
+<body>
+  
+  <!--' <div id="store-details">
+    <div id="detail-titld">
+  <h2>STORE STATE</h2>
+    </div>
+    <div class="detail">
+      <div class="detail-label">Active Node:</div>
+      <div class="detail-value">#13j3o</div>
+    </div>
+    <div class="detail">
+      <div class="detail-label">Path:</div>
+      <div class="detail-value">Node 1 > Node 2 > 3</div>
+    </div>
+    <div class="detail">
+      <div class="detail-label">Next sib:</div>
+      <div class="detail-value">#Node 5</div>
+    </div>
+  </div> -->
+  <main id="app">
+    
+    <header id="topbar">
+      <div id="button-container">
+        <input type="button" name="show-store" id="show-store" value="Show Store" />
+      </div>
+    </header>
+   
+    <section id="active-view" data-view="list-view">
+    <li id="" data-parent-id="" class="list-node" data-active="false" data-selected="false" data-focused="false" data-expanded="true">
+      <ul id="outliner" class="list"></ul>
+    </li>
+    </section>
+ 
+  </main>
+
+  <script src="./main.js" type="module"></script>
+
+  <template id="list-node-template">
+    <li id="" data-parent-id="" class="list-node" data-active="false" data-selected="false" data-focused="false" data-expanded="true">
+      <section class="node-left">
+        <svg class="list-bullet" width="20" height="20" viewBox="-10 -10 30 30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <circle class="list-bullet" fill="#477CC1" cx="5" cy="5" r="10"></circle>
+          <rect class="list-bullet-square"  x="-5" y="-5" width="20" height="20"></rect>
+        </svg>
+      </section>
+      <section class="node-right">
+        <div class="node-content" ondblclick="navigator.virtualKeyboard.show();" virtualkeyboardpolicy="manual">Help im an node!</div>
+        <ul class="node-list list"></ul>
+      </section>
+    </li>
+  </template>
+
+</body>
+
+</html>

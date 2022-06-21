@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "name": "nodes"
+  },
+  "nodes": [
+    {
+      "id": 10,
+      "value": "New screenplay ideas",
+      "children": [
+        {
+          "id": 100,
+          "value": "Rip off sopranos",
+          "children": [
+            {
+              "id": 100,
+              "value": "About gangsters",
+              "children": [{}]
+            },
+            {
+              "id": 101,
+              "value": "Main character sees a psychiatrist, Main character sees a psychiatrist. Main character sees a psychiatrist",
+              "children": [{}]
+            }
+          ]
+        },
+        {
+          "id": 101,
+          "value": "Rip off sopranos",
+          "children": [
+            {
+              "id": 120,
+              "value": "About gangsters",
+              "children": [{}]
+            },
+            {
+              "id": 121,
+              "value": "Main character sees a psychiatrist",
+              "children": [{}]
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "value": "Rip off sopranos",
+          "children": [
+            {
+              "id": 200,
+              "value": "About gangsters",
+              "children": [{}]
+            },
+            {
+              "id": 201,
+              "value": "Main character sees a psychiatrist",
+              "children": [{}]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "value": "Work to do list",
+      "children": [
+        {
+          "id": 30,
+          "value": "Finush modal",
+          "children": [
+            {
+              "id": 300,
+              "value": "Add submit button",
+              "children": [{}]
+            },
+            {
+              "id": 301,
+              "value": "Add cancek0l buton",
+              "children": [{}]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "value": "Rip off sopranos",
+          "children": [
+            {
+              "id": 30,
+              "value": "About gangsters",
+              "children": [{}]
+            },
+            {
+              "id": 31,
+              "value": "Main character sees a psychiatrist",
+              "children": [{}]
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "value": "Clean up stylings and css",
+          "children": [
+            {
+              "id": 120,
+              "value": "Delete comments",
+              "children": [{}]
+            },
+            {
+              "id": 121,
+              "value": "Condense classes and redundant rules",
+              "children": [{}]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

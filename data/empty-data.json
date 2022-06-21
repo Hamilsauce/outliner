@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "name": "nodes"
+  },
+  "nodes": [
+    {
+      "id": 100,
+      "id2": "1-0-0",
+      "value": "...Start an outline",
+      "children": []
+    }
+  ]
+}
