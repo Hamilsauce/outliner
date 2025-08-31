@@ -1,5 +1,8 @@
 import { Canvas } from '../graph-view/SvgCanvas.js';
+import ham from 'https://hamilsauce.github.io/hamhelper/hamhelper1.0.0.js';
+ham
 
+const { template, utils } = ham;
 export class Node {
   constructor(value) {
     this.adjacencyList = []

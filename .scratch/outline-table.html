@@ -22,23 +22,33 @@
     </header>
     <section id="app-body">
       <ul id="list-node list">
+        
+        <li class="list-node row" id="n0">
+          <div class="node-left">+</div>
+          <div class="node-right">
+            <div class="node-content">Look im an node!</div>
+            <ul id="node-children list">
+              <li class="list-node row" id="n0-0">
+                <div class="node-left">+</div>
+                <div class="node-right">
+                  <div class="node-content">Look im an node!</div>
+                  <ul id="node-children list"></ul>
+                </div>
+              </li>
+              
+            </ul>
+          </div>
+        </li>
+        
         <li class="list-node row">
           <div class="node-left">+</div>
           <div class="node-right">
             <div class="node-content">Look im an node!</div>
             <div class="node-children">+</div>
-
+            
           </div>
         </li>
-        <li class="list-node row">
-          <div class="node-left">+</div>
-          <div class="node-right">
-            <div class="node-content">Look im an node!</div>
-            <div class="node-children">+</div>
-
-          </div>
-        </li>
-
+        
       </ul>
     </section>
     <footer id="app-footer">
@@ -48,6 +58,20 @@
     </footer>
   </div>
   <script src="./oline.js" type="module"></script>
+  
+  <template id="list-node-template">
+    <!-- <div id="list-node-template"> -->
+      <li class="list-node row" id="">
+        <div class="node-left">+</div>
+        <div class="node-right">
+          <div class="node-content">Look im an node!</div>
+          <ul id="node-children list"></ul>
+        </div>
+      </li>
+    <!-- </div>  -->
+    
+  </template>
+  
 </body>
 
 </html>

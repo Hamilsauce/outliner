@@ -1,4 +1,4 @@
-import { getColor } from '/lib/colors.js'
+import { getColor } from '../lib/colors.js'
 import { draggable } from 'https://hamilsauce.github.io/hamhelper/draggable.js'
 import { Stack } from '../lib/stack.js'
 import { Line } from './Line.js';
